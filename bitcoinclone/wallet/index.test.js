@@ -96,8 +96,10 @@ describe('Wallet', () => {
 					});
 
 					it('includes the output amount in the returned balance', () => {
-						chain: blockchain.chain,
-						address: wallet.publickey
+						expect(Wallet.calculateBalance({chain: blockchain.chain,address: wallet.publickey})).toEqual(
+							recentTransaction.outputMap[wallet.publickey]+
+							sameBlockTransaction.outputMap[wallet.publickey]+
+							nextBlockTransaction.outputMap[wallet.publickey]);
 					});
 				});
 			});

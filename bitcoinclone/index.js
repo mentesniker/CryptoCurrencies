@@ -33,6 +33,13 @@ app.get('/api/mine-transactions', (req,res) => {
 	res.redirect('/api/blocks');
 });
 
+app.get('/api/wallet-info',(req,res) => {
+	const address = wallet.publickey;
+	res.json({address: 
+		address,
+		balance: Wallet.calculateBalance({chain: blockchain.chain, address:wallet.publickey})});
+});
+
 app.post('/api/mine', (req,res) => {
 	const {data} = req.body;
 
@@ -93,5 +100,4 @@ app.listen(PORT, () => {
 	if(PORT !== DEFAULT_PORT){
 		syncWithRootState();
 	}
-
 });
