@@ -2,7 +2,7 @@ const Block = require('./block');
 const Transaction = require('../wallet/transaction');
 const {cryptoHash} = require('../util');
 const {REWARD_INPUT, MINING_REWARD} = require('../config');
-
+const Wallet = require('../wallet');
 class Blockchain {
 
 	constructor(){
@@ -28,13 +28,21 @@ class Blockchain {
 			console.error('The incoming chain is not valid');
 			return;
 		}
+
+		if(!this.validTransactionData({chain})){
+			console.error('The incoming chain has invalid data');
+			return;
+		}
+
 		if(onSuccess) {
 			onSuccess();
 		}
+		
 		console.log('replacing chain with ', chain)
 		this.chain = chain;
 
 	}
+
 	static isValidChain(chain) {
 
 		if(JSON.stringify(chain[0]) !== JSON.stringify(Block.genesis())) return false;
@@ -66,6 +74,7 @@ class Blockchain {
 	validTransactionData({chain}){
 		for(let i=1; i<chain.length; i++){
 			const block = chain[i];
+			const transactionSet = new Set();
 			let rewardTransactionCount = 0;
 
 			for(let transaction of block.data){
@@ -75,7 +84,6 @@ class Blockchain {
 						console.error('Miner rewards exceed limit');
 						return false;
 					}
-
 					if(Object.values(transaction.outputMap)[0] !== MINING_REWARD){
 						console.error('Miner rewrad amount is invalid');
 						return false;
@@ -85,8 +93,20 @@ class Blockchain {
 						console.error('Invalid transaction');
 						return false;
 					}
+					const trueBalance = Wallet.calculateBalance({chain: this.chain, address: transaction.input.address});
+					if(transaction.input.amount !== trueBalance){
+						console.error('invalid input amount');
+						return false;
+					}
+					if(transactionSet.has(transaction)){
+						console.error('An identical transaction appears more than once in the block');
+						return false;
+					}else{
+						transactionSet.add(transaction);
+					}
 				}
 			}
+			return true;
 		}
 	}
 }
