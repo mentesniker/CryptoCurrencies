@@ -4,7 +4,7 @@ const INITIAL_DIFFICULTY = 1;
 const GENESIS_DATA = {
 	timestamp: 1,
 	lastHash: '------',
-	hash: 'hash-one',
+	hash: 'C2DA371C3A9478181908A8B4FB13858E06A430334408765A1E73179896C963C3',
 	difficulty: INITIAL_DIFFICULTY,
 	nonce: 0,
 	data: ["h","o","l","a"]

@@ -9,8 +9,8 @@
     "dev": "npm run dev-client & npm run start-redis && nodemon index.js",
     "start-redis": "redis-server --daemonize yes",
     "dev-peer": "cross-env GENERATE_PEER_PORT='true' nodemon index.js",
-    "build-client": "parcel build client/src/index.html --out-dir client/dist",
-    "dev-client": "parcel client/src/index.html --out-dir client/dist",
+    "build-client": "npm run clean && parcel build client/src/index.html --out-dir client/dist",
+    "dev-client": "npm run clean && parcel client/src/index.html --out-dir client/dist",
     "clean": "rm -rf .cache client/dist"
   },
   "jest": {
@@ -35,8 +35,12 @@
     "elliptic": "^6.5.3",
     "express": "^4.17.1",
     "hex-to-binary": "^1.0.1",
+    "history": "^5.0.0",
+    "parcel": "^1.12.4",
     "react": "^16.13.1",
+    "react-bootstrap": "^1.3.0",
     "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
     "request": "^2.88.2",
     "uuid": "^8.2.0"
   }

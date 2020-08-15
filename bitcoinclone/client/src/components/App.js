@@ -1,17 +1,45 @@
 import React,{Component} from 'react';
+import {Link} from 'react-router-dom';
+import logo from '../assets/logo.png';
 
 class App extends Component{
-    componentDidMount(){
-        fetch('http://localhost:3000/api/wallet-info').then(() => response.json()).then(json => this.setState({walletInfo: json}));
-    }
-    state = {walletInfo: {address: 'fooxv6', balance: 9999}}
     render(){
-        const {address, balance} = this.state.walletInfo;
         return (
-            <div>
-                <div>Welcome to the blockchain...</div>
-                <div>address: {address}</div>
-                <div>Balance: {address}</div>
+            <div className='App'>
+            <main>
+              <div class="jumbotron">
+                <div class="container">
+                  <h1>We are the future</h1>
+                  <a href="#" class="btn-main"> Get Started </a>
+                </div>
+              </div>
+            </main>
+
+        <section class="supporting">
+          <div class="container">
+
+            <div class="col">
+              <img src="https://s3.amazonaws.com/codecademy-content/projects/broadway/design.svg"/>
+              <h2>Mine</h2>
+              <p>Mine a block made simple.</p>
+              <a href="#"> Learn More</a>
+            </div>
+
+            <div class="col">
+              <img src="https://s3.amazonaws.com/codecademy-content/projects/broadway/design.svg"/>
+              <h2>Transactions</h2>
+              <p>Sent or receive currency, as simple as that.</p>
+              <a href="#"> Learn More</a>
+            </div>
+
+            <div class="col">
+              <img src="https://s3.amazonaws.com/codecademy-content/projects/broadway/design.svg"/>
+              <h2>Visualize</h2>
+              <p>Watch the blockchain grow in the browser.</p>
+              <a href="#"> Learn More</a>
+            </div>
+          </div>
+        </section>
             </div>
         );
     }
