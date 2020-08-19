@@ -9,6 +9,7 @@ class MyAccount extends Component{
     }
     render(){
         const {address, balance} = this.state.walletInfo;
+        console.log(balance);
         return (
             <div className='MyAccount' style={{paddingTop: "10%",height:"100%"}}>
                 <div className='WalletInfo' style={{textAlign:"center"}}>

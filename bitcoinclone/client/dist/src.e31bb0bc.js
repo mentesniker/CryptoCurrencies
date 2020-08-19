@@ -48859,62 +48859,25 @@ var Block = /*#__PURE__*/function (_Component) {
   var _super = _createSuper(Block);
 
   function Block() {
-    var _this;
-
-    var _temp;
-
     _classCallCheck(this, Block);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _possibleConstructorReturn(_this, (_temp = _this = _super.call.apply(_super, [this].concat(args)), _this.state = {
-      displayTransaction: false
-    }, _this.toggleTransaction = function () {
-      _this.setState({
-        displayTransaction: !_this.state.displayTransaction
-      });
-    }, _temp));
+    return _super.apply(this, arguments);
   }
 
   _createClass(Block, [{
     key: "render",
     value: function render() {
-      var _this$props$block = this.props.block,
-          timestamp = _this$props$block.timestamp,
-          hash = _this$props$block.hash;
-      var hashDisplay = "".concat(hash.substring(0, 15), "...");
       return _react.default.createElement("div", {
         className: "Block"
-      }, _react.default.createElement("div", null, "Hash: ", hashDisplay), _react.default.createElement("div", null, "Timestamp: ", new Date(timestamp).toLocaleString()), this.displayTransaction);
+      }, this.displayTransaction);
     }
   }, {
     key: "displayTransaction",
     get: function get() {
       var data = this.props.block.data;
       var stringifiedData = JSON.stringify(data);
-      var dataDisplay = stringifiedData.length > 35 ? "".concat(stringifiedData.substring(0, 35), "...") : stringifiedData;
-
-      if (this.state.displayTransaction) {
-        return _react.default.createElement("div", null, data.map(function (transaction) {
-          return _react.default.createElement("div", {
-            key: transaction.id
-          }, _react.default.createElement("hr", null), _react.default.createElement(_Transaction.default, {
-            transaction: transaction
-          }));
-        }), _react.default.createElement("br", null), _react.default.createElement(_reactBootstrap.Button, {
-          bsStyle: "danger",
-          bsSize: "small",
-          onClick: this.toggleTransaction
-        }, "Show Less"));
-      }
-
-      return _react.default.createElement("div", null, _react.default.createElement("div", null, "Data: ", dataDisplay), _react.default.createElement(_reactBootstrap.Button, {
-        bsStyle: "danger",
-        bsSize: "small",
-        onClick: this.toggleTransaction
-      }, "Show More"));
+      var dataDisplay = stringifiedData.length > 40 ? "".concat(stringifiedData.substring(0, 40), "...") : stringifiedData;
+      return _react.default.createElement("div", null, dataDisplay);
     }
   }]);
 
@@ -48924,7 +48887,80 @@ var Block = /*#__PURE__*/function (_Component) {
 ;
 var _default = Block;
 exports.default = _default;
-},{"react":"../../node_modules/react/index.js","react-bootstrap":"../../node_modules/react-bootstrap/esm/index.js","./Transaction":"components/Transaction.js"}],"components/Blocks.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","react-bootstrap":"../../node_modules/react-bootstrap/esm/index.js","./Transaction":"components/Transaction.js"}],"../../node_modules/parcel/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+
+  return bundleURL;
+}
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"../../node_modules/parcel/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"../../node_modules/parcel/src/builtins/bundle-url.js"}],"../../node_modules/bootstrap/dist/css/bootstrap.min.css":[function(require,module,exports) {
+
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+},{"_css_loader":"../../node_modules/parcel/src/builtins/css-loader.js"}],"components/Blocks.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -48937,6 +48973,10 @@ var _react = _interopRequireWildcard(require("react"));
 var _Block = _interopRequireDefault(require("./Block"));
 
 var _reactRouterDom = require("react-router-dom");
+
+var _Table = _interopRequireDefault(require("react-bootstrap/Table"));
+
+require("bootstrap/dist/css/bootstrap.min.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -49003,14 +49043,33 @@ var Blocks = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return _react.default.createElement("div", null, _react.default.createElement("h3", null, "Blocks"), _react.default.createElement("div", null, _react.default.createElement(_reactRouterDom.Link, {
-        to: "/"
-      }, "Home")), this.state.blocks.map(function (block) {
-        return _react.default.createElement(_Block.default, {
+      return _react.default.createElement("div", {
+        style: {
+          paddingTop: "5%"
+        }
+      }, _react.default.createElement("h2", {
+        style: {
+          textAlign: "center",
+          paddingTop: "5%"
+        }
+      }, "BlockChain"), _react.default.createElement("div", {
+        style: {
+          paddingTop: "3%",
+          paddingLeft: "20%",
+          paddingBottom: "5%",
+          paddingRight: "20%"
+        }
+      }, _react.default.createElement(_Table.default, {
+        striped: true,
+        bordered: true,
+        hover: true,
+        dataPagination: true
+      }, _react.default.createElement("thead", null, _react.default.createElement("tr", null, _react.default.createElement("th", null, "Hash"), _react.default.createElement("th", null, "Timestamp"), _react.default.createElement("th", null, "Data"))), _react.default.createElement("tbody", null, this.state.blocks.map(function (block) {
+        return _react.default.createElement("tr", null, _react.default.createElement("td", null, "".concat(block.hash.substring(0, 15), "...")), _react.default.createElement("td", null, block.timestamp), _react.default.createElement("td", null, _react.default.createElement(_Block.default, {
           key: block.hash,
           block: block
-        });
-      }));
+        })));
+      })))));
     }
   }]);
 
@@ -49019,7 +49078,7 @@ var Blocks = /*#__PURE__*/function (_Component) {
 
 var _default = Blocks;
 exports.default = _default;
-},{"react":"../../node_modules/react/index.js","./Block":"components/Block.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js"}],"components/ConductTransaction.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","./Block":"components/Block.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap/Table":"../../node_modules/react-bootstrap/esm/Table.js","bootstrap/dist/css/bootstrap.min.css":"../../node_modules/bootstrap/dist/css/bootstrap.min.css"}],"components/ConductTransaction.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -49111,13 +49170,21 @@ var ConductTransaction = /*#__PURE__*/function (_Component) {
     key: "render",
     value: function render() {
       return _react.default.createElement("div", {
-        className: "ConductTransaction"
+        className: "ConductTransaction",
+        style: {
+          paddingTop: "5%"
+        }
       }, _react.default.createElement("h2", {
         style: {
-          paddingTop: "10%",
           textAlign: "center"
         }
-      }, "Conduct a Transaction"), _react.default.createElement(_reactBootstrap.FormGroup, null, _react.default.createElement("label", {
+      }, "Conduct a Transaction"), _react.default.createElement("div", {
+        style: {
+          width: "50%",
+          margin: "0 auto",
+          paddingTop: "5%"
+        }
+      }, _react.default.createElement(_reactBootstrap.FormGroup, null, _react.default.createElement("label", {
         "for": "account"
       }, "Account"), _react.default.createElement(_reactBootstrap.FormControl, {
         id: "account",
@@ -49126,7 +49193,10 @@ var ConductTransaction = /*#__PURE__*/function (_Component) {
         value: this.state.recipient,
         onChange: this.updateRecipient
       }), _react.default.createElement("br", null), _react.default.createElement("label", {
-        "for": "quantity"
+        "for": "quantity",
+        style: {
+          paddingTop: "5%"
+        }
       }, "Quantity"), _react.default.createElement(_reactBootstrap.FormControl, {
         id: "quantity",
         input: "number",
@@ -49136,7 +49206,7 @@ var ConductTransaction = /*#__PURE__*/function (_Component) {
       })), _react.default.createElement(_reactBootstrap.Button, {
         bsStyle: "danger",
         onClick: this.conductTransaction
-      }, "Submit"));
+      }, "Submit")));
     }
   }]);
 
@@ -49223,8 +49293,6 @@ var TransactionPool = /*#__PURE__*/function (_Component) {
       fetch("".concat(document.location.origin, "/api/mine-transactions")).then(function (response) {
         if (response.status === 200) {
           alert('success');
-
-          _history.default.push('/blocks');
         } else {
           alert('The mine-transactions block request did not complete.');
         }
@@ -49251,10 +49319,12 @@ var TransactionPool = /*#__PURE__*/function (_Component) {
     key: "render",
     value: function render() {
       return _react.default.createElement("div", {
-        className: "TransactionPool"
-      }, _react.default.createElement("div", null, _react.default.createElement(_reactRouterDom.Link, {
-        to: "/"
-      }, "Home")), _react.default.createElement("h3", null, "Transaction Pool"), Object.values(this.state.transactionPoolMap).map(function (transaction) {
+        className: "TransactionPool",
+        style: {
+          paddingTop: "5%",
+          textAlign: "center"
+        }
+      }, _react.default.createElement("h2", null, "Transaction Pool"), Object.values(this.state.transactionPoolMap).map(function (transaction) {
         return _react.default.createElement("div", {
           key: transaction.id
         }, _react.default.createElement("hr", null), _react.default.createElement(_Transaction.default, {
@@ -49357,6 +49427,7 @@ var MyAccount = /*#__PURE__*/function (_Component) {
       var _this$state$walletInf = this.state.walletInfo,
           address = _this$state$walletInf.address,
           balance = _this$state$walletInf.balance;
+      console.log(balance);
       return _react.default.createElement("div", {
         className: "MyAccount",
         style: {
@@ -49385,74 +49456,7 @@ var MyAccount = /*#__PURE__*/function (_Component) {
 
 var _default = MyAccount;
 exports.default = _default;
-},{"react":"../../node_modules/react/index.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","../assets/logo.png":"assets/logo.png"}],"../../node_modules/parcel/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
-
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
-
-  return bundleURL;
-}
-
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
-
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
-  }
-
-  return '/';
-}
-
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
-}
-
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"../../node_modules/parcel/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-
-function updateLink(link) {
-  var newLink = link.cloneNode();
-
-  newLink.onload = function () {
-    link.remove();
-  };
-
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
-      }
-    }
-
-    cssTimeout = null;
-  }, 50);
-}
-
-module.exports = reloadCSS;
-},{"./bundle-url":"../../node_modules/parcel/src/builtins/bundle-url.js"}],"index.css":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","../assets/logo.png":"assets/logo.png"}],"index.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -49529,7 +49533,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "44731" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37995" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
