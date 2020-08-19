@@ -33810,7 +33810,7 @@ var App = /*#__PURE__*/function (_Component) {
       }, _react.default.createElement("div", {
         "class": "container"
       }, _react.default.createElement("h1", null, "We are the future"), _react.default.createElement("a", {
-        href: "#",
+        href: "/get-started",
         "class": "btn-main"
       }, " Get Started ")))), _react.default.createElement("section", {
         "class": "supporting"
@@ -33820,20 +33820,20 @@ var App = /*#__PURE__*/function (_Component) {
         "class": "col"
       }, _react.default.createElement("img", {
         src: "https://s3.amazonaws.com/codecademy-content/projects/broadway/design.svg"
-      }), _react.default.createElement("h2", null, "Mine"), _react.default.createElement("p", null, "Mine a block made simple."), _react.default.createElement("a", {
-        href: "#"
+      }), _react.default.createElement("h2", null, "Mine"), _react.default.createElement("p", null, "Mine a block was never more easier. Just press a button"), _react.default.createElement("a", {
+        href: "/get-started#mine"
       }, " Learn More")), _react.default.createElement("div", {
         "class": "col"
       }, _react.default.createElement("img", {
         src: "https://s3.amazonaws.com/codecademy-content/projects/broadway/design.svg"
       }), _react.default.createElement("h2", null, "Transactions"), _react.default.createElement("p", null, "Sent or receive currency, as simple as that."), _react.default.createElement("a", {
-        href: "#"
+        href: "/get-started#send"
       }, " Learn More")), _react.default.createElement("div", {
         "class": "col"
       }, _react.default.createElement("img", {
         src: "https://s3.amazonaws.com/codecademy-content/projects/broadway/design.svg"
       }), _react.default.createElement("h2", null, "Visualize"), _react.default.createElement("p", null, "Watch the blockchain grow in the browser."), _react.default.createElement("a", {
-        href: "#"
+        href: "/get-started#visualize"
       }, " Learn More")))));
     }
   }]);
@@ -49149,10 +49149,10 @@ var ConductTransaction = /*#__PURE__*/function (_Component) {
       var _this$state = _this.state,
           recipient = _this$state.recipient,
           amount = _this$state.amount;
-      fetch('http://localhost:3000/api/transact', {
+      fetch("".concat(document.location.origin, "/api/transact"), {
         method: 'POST',
         headers: {
-          'Content-Type': 'aplication/json'
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           recipient: recipient,
@@ -49161,7 +49161,7 @@ var ConductTransaction = /*#__PURE__*/function (_Component) {
       }).then(function (response) {
         return response.json();
       }).then(function (json) {
-        return alert(json.message || json.type);
+        alert(json.message || json.type);
       });
     }, _temp));
   }
@@ -49456,7 +49456,107 @@ var MyAccount = /*#__PURE__*/function (_Component) {
 
 var _default = MyAccount;
 exports.default = _default;
-},{"react":"../../node_modules/react/index.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","../assets/logo.png":"assets/logo.png"}],"index.css":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","../assets/logo.png":"assets/logo.png"}],"components/GetStarted.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _reactBootstrap = require("react-bootstrap");
+
+var _reactRouterDom = require("react-router-dom");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+var GetStarted = /*#__PURE__*/function (_Component) {
+  _inherits(GetStarted, _Component);
+
+  var _super = _createSuper(GetStarted);
+
+  function GetStarted() {
+    _classCallCheck(this, GetStarted);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(GetStarted, [{
+    key: "render",
+    value: function render() {
+      return _react.default.createElement("div", {
+        className: "GetStarted",
+        style: {
+          paddingTop: "5%"
+        }
+      }, _react.default.createElement("h1", {
+        style: {
+          textAlign: "center"
+        }
+      }, "Welcome to the Block Chain!"), _react.default.createElement("div", {
+        style: {
+          paddingTop: "5%",
+          paddingLeft: "10%",
+          paddingRight: "10%"
+        }
+      }, _react.default.createElement("h2", null, "The cryptocurrencies are the future"), _react.default.createElement("p", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur at dignissim ligula. Aliquam ultrices nunc eros, at pellentesque urna varius ullamcorper. Ut in commodo odio. Duis laoreet, nibh interdum tincidunt laoreet, urna libero congue ipsum, et condimentum sapien massa vel dui. Nulla congue urna at elit suscipit tempor. Maecenas quis pellentesque felis, et pharetra arcu. Suspendisse ullamcorper bibendum nulla, et sagittis enim convallis sit amet. Aliquam tincidunt eu sem non convallis. Suspendisse tincidunt ex sed pellentesque mattis. Ut commodo sed sapien nec facilisis. Nullam quis mi et ligula feugiat vestibulum. Proin condimentum, lacus ac egestas fermentum, metus enim fermentum ante, ac ullamcorper arcu lorem vitae diam. Duis porta justo urna. Nunc laoreet elit neque, aliquet placerat massa aliquam nec. Mauris euismod orci felis, eu convallis libero varius vitae. Phasellus luctus ex et imperdiet efficitur. Curabitur faucibus libero ipsum. Curabitur sit amet dictum nunc. Curabitur sit amet eros molestie mi vestibulum elementum sed non urna. Quisque mattis enim a nisi pharetra faucibus. Morbi eget venenatis purus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam facilisis sed diam in molestie. Quisque lacinia magna nulla, sed consectetur nunc mollis egestas. Phasellus arcu libero, pulvinar sit amet ornare eu, finibus sed massa. Mauris hendrerit iaculis ex, vel pharetra lectus pharetra vel. Morbi varius orci vel ipsum lobortis euismod. Phasellus sed lorem cursus, dapibus lorem eget, egestas massa. Ut vitae ante dui. Mauris pulvinar in massa id rhoncus. Suspendisse et ante ante. Suspendisse potenti. Fusce posuere facilisis turpis nec tincidunt. Aliquam eget lectus at tortor aliquet finibus. Vivamus posuere metus vitae elit luctus eleifend. Nullam id purus et dolor pharetra elementum. Nulla id neque quis lorem luctus molestie sed at dui. Donec eget diam dapibus, ultricies leo vitae, rhoncus lorem. Phasellus interdum malesuada nibh in efficitur. Morbi et quam augue. Maecenas non urna velit. Donec at congue tellus. Donec bibendum eros a magna accumsan, ut tincidunt tellus sagittis. Donec rutrum justo et pharetra elementum. Suspendisse dolor tellus, dictum consequat laoreet in, mattis sit amet orci. Pellentesque facilisis sed sapien eu gravida. Cras ullamcorper lobortis felis et semper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean cursus viverra ligula, et faucibus diam sodales in. Praesent porta felis quis blandit ultrices. Sed varius arcu faucibus ligula pellentesque pharetra. Mauris pharetra urna quis mi convallis pharetra eu sit amet odio. Aenean sagittis nisi eu lacinia placerat. Nulla imperdiet lacus et porta mattis. Praesent magna magna, tempus et pulvinar vitae, elementum a mi. Vivamus vel consequat nisl, et fringilla mi. Vivamus a scelerisque sem. Ut vehicula leo vel risus auctor, ac dignissim nunc tristique. ")), _react.default.createElement("div", {
+        id: "mine",
+        style: {
+          paddingTop: "5%",
+          paddingLeft: "10%",
+          paddingRight: "10%"
+        }
+      }, _react.default.createElement("h2", null, "Mine transactions"), _react.default.createElement("p", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur at dignissim ligula. Aliquam ultrices nunc eros, at pellentesque urna varius ullamcorper. Ut in commodo odio. Duis laoreet, nibh interdum tincidunt laoreet, urna libero congue ipsum, et condimentum sapien massa vel dui. Nulla congue urna at elit suscipit tempor. Maecenas quis pellentesque felis, et pharetra arcu. Suspendisse ullamcorper bibendum nulla, et sagittis enim convallis sit amet. Aliquam tincidunt eu sem non convallis. Suspendisse tincidunt ex sed pellentesque mattis. Ut commodo sed sapien nec facilisis. Nullam quis mi et ligula feugiat vestibulum. Proin condimentum, lacus ac egestas fermentum, metus enim fermentum ante, ac ullamcorper arcu lorem vitae diam. Duis porta justo urna. Nunc laoreet elit neque, aliquet placerat massa aliquam nec. Mauris euismod orci felis, eu convallis libero varius vitae. Phasellus luctus ex et imperdiet efficitur. Curabitur faucibus libero ipsum. Curabitur sit amet dictum nunc. Curabitur sit amet eros molestie mi vestibulum elementum sed non urna. Quisque mattis enim a nisi pharetra faucibus. Morbi eget venenatis purus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam facilisis sed diam in molestie. Quisque lacinia magna nulla, sed consectetur nunc mollis egestas. Phasellus arcu libero, pulvinar sit amet ornare eu, finibus sed massa. Mauris hendrerit iaculis ex, vel pharetra lectus pharetra vel. Morbi varius orci vel ipsum lobortis euismod. Phasellus sed lorem cursus, dapibus lorem eget, egestas massa. Ut vitae ante dui. Mauris pulvinar in massa id rhoncus. Suspendisse et ante ante. Suspendisse potenti. Fusce posuere facilisis turpis nec tincidunt. Aliquam eget lectus at tortor aliquet finibus. Vivamus posuere metus vitae elit luctus eleifend. Nullam id purus et dolor pharetra elementum. Nulla id neque quis lorem luctus molestie sed at dui. Donec eget diam dapibus, ultricies leo vitae, rhoncus lorem. Phasellus interdum malesuada nibh in efficitur. Morbi et quam augue. Maecenas non urna velit. Donec at congue tellus. Donec bibendum eros a magna accumsan, ut tincidunt tellus sagittis. Donec rutrum justo et pharetra elementum. Suspendisse dolor tellus, dictum consequat laoreet in, mattis sit amet orci. Pellentesque facilisis sed sapien eu gravida. Cras ullamcorper lobortis felis et semper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean cursus viverra ligula, et faucibus diam sodales in. Praesent porta felis quis blandit ultrices. Sed varius arcu faucibus ligula pellentesque pharetra. Mauris pharetra urna quis mi convallis pharetra eu sit amet odio. Aenean sagittis nisi eu lacinia placerat. Nulla imperdiet lacus et porta mattis. Praesent magna magna, tempus et pulvinar vitae, elementum a mi. Vivamus vel consequat nisl, et fringilla mi. Vivamus a scelerisque sem. Ut vehicula leo vel risus auctor, ac dignissim nunc tristique. ")), _react.default.createElement("div", {
+        id: "send",
+        style: {
+          paddingTop: "5%",
+          paddingLeft: "10%",
+          paddingRight: "10%"
+        }
+      }, _react.default.createElement("h2", null, "Send or recive currency"), _react.default.createElement("p", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur at dignissim ligula. Aliquam ultrices nunc eros, at pellentesque urna varius ullamcorper. Ut in commodo odio. Duis laoreet, nibh interdum tincidunt laoreet, urna libero congue ipsum, et condimentum sapien massa vel dui. Nulla congue urna at elit suscipit tempor. Maecenas quis pellentesque felis, et pharetra arcu. Suspendisse ullamcorper bibendum nulla, et sagittis enim convallis sit amet. Aliquam tincidunt eu sem non convallis. Suspendisse tincidunt ex sed pellentesque mattis. Ut commodo sed sapien nec facilisis. Nullam quis mi et ligula feugiat vestibulum. Proin condimentum, lacus ac egestas fermentum, metus enim fermentum ante, ac ullamcorper arcu lorem vitae diam. Duis porta justo urna. Nunc laoreet elit neque, aliquet placerat massa aliquam nec. Mauris euismod orci felis, eu convallis libero varius vitae. Phasellus luctus ex et imperdiet efficitur. Curabitur faucibus libero ipsum. Curabitur sit amet dictum nunc. Curabitur sit amet eros molestie mi vestibulum elementum sed non urna. Quisque mattis enim a nisi pharetra faucibus. Morbi eget venenatis purus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam facilisis sed diam in molestie. Quisque lacinia magna nulla, sed consectetur nunc mollis egestas. Phasellus arcu libero, pulvinar sit amet ornare eu, finibus sed massa. Mauris hendrerit iaculis ex, vel pharetra lectus pharetra vel. Morbi varius orci vel ipsum lobortis euismod. Phasellus sed lorem cursus, dapibus lorem eget, egestas massa. Ut vitae ante dui. Mauris pulvinar in massa id rhoncus. Suspendisse et ante ante. Suspendisse potenti. Fusce posuere facilisis turpis nec tincidunt. Aliquam eget lectus at tortor aliquet finibus. Vivamus posuere metus vitae elit luctus eleifend. Nullam id purus et dolor pharetra elementum. Nulla id neque quis lorem luctus molestie sed at dui. Donec eget diam dapibus, ultricies leo vitae, rhoncus lorem. Phasellus interdum malesuada nibh in efficitur. Morbi et quam augue. Maecenas non urna velit. Donec at congue tellus. Donec bibendum eros a magna accumsan, ut tincidunt tellus sagittis. Donec rutrum justo et pharetra elementum. Suspendisse dolor tellus, dictum consequat laoreet in, mattis sit amet orci. Pellentesque facilisis sed sapien eu gravida. Cras ullamcorper lobortis felis et semper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean cursus viverra ligula, et faucibus diam sodales in. Praesent porta felis quis blandit ultrices. Sed varius arcu faucibus ligula pellentesque pharetra. Mauris pharetra urna quis mi convallis pharetra eu sit amet odio. Aenean sagittis nisi eu lacinia placerat. Nulla imperdiet lacus et porta mattis. Praesent magna magna, tempus et pulvinar vitae, elementum a mi. Vivamus vel consequat nisl, et fringilla mi. Vivamus a scelerisque sem. Ut vehicula leo vel risus auctor, ac dignissim nunc tristique. ")), _react.default.createElement("div", {
+        id: "visualize",
+        style: {
+          paddingTop: "5%",
+          paddingLeft: "10%",
+          paddingRight: "10%",
+          paddingBottom: "5%"
+        }
+      }, _react.default.createElement("h2", null, "Visualize the Block Chain"), _react.default.createElement("p", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur at dignissim ligula. Aliquam ultrices nunc eros, at pellentesque urna varius ullamcorper. Ut in commodo odio. Duis laoreet, nibh interdum tincidunt laoreet, urna libero congue ipsum, et condimentum sapien massa vel dui. Nulla congue urna at elit suscipit tempor. Maecenas quis pellentesque felis, et pharetra arcu. Suspendisse ullamcorper bibendum nulla, et sagittis enim convallis sit amet. Aliquam tincidunt eu sem non convallis. Suspendisse tincidunt ex sed pellentesque mattis. Ut commodo sed sapien nec facilisis. Nullam quis mi et ligula feugiat vestibulum. Proin condimentum, lacus ac egestas fermentum, metus enim fermentum ante, ac ullamcorper arcu lorem vitae diam. Duis porta justo urna. Nunc laoreet elit neque, aliquet placerat massa aliquam nec. Mauris euismod orci felis, eu convallis libero varius vitae. Phasellus luctus ex et imperdiet efficitur. Curabitur faucibus libero ipsum. Curabitur sit amet dictum nunc. Curabitur sit amet eros molestie mi vestibulum elementum sed non urna. Quisque mattis enim a nisi pharetra faucibus. Morbi eget venenatis purus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam facilisis sed diam in molestie. Quisque lacinia magna nulla, sed consectetur nunc mollis egestas. Phasellus arcu libero, pulvinar sit amet ornare eu, finibus sed massa. Mauris hendrerit iaculis ex, vel pharetra lectus pharetra vel. Morbi varius orci vel ipsum lobortis euismod. Phasellus sed lorem cursus, dapibus lorem eget, egestas massa. Ut vitae ante dui. Mauris pulvinar in massa id rhoncus. Suspendisse et ante ante. Suspendisse potenti. Fusce posuere facilisis turpis nec tincidunt. Aliquam eget lectus at tortor aliquet finibus. Vivamus posuere metus vitae elit luctus eleifend. Nullam id purus et dolor pharetra elementum. Nulla id neque quis lorem luctus molestie sed at dui. Donec eget diam dapibus, ultricies leo vitae, rhoncus lorem. Phasellus interdum malesuada nibh in efficitur. Morbi et quam augue. Maecenas non urna velit. Donec at congue tellus. Donec bibendum eros a magna accumsan, ut tincidunt tellus sagittis. Donec rutrum justo et pharetra elementum. Suspendisse dolor tellus, dictum consequat laoreet in, mattis sit amet orci. Pellentesque facilisis sed sapien eu gravida. Cras ullamcorper lobortis felis et semper. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean cursus viverra ligula, et faucibus diam sodales in. Praesent porta felis quis blandit ultrices. Sed varius arcu faucibus ligula pellentesque pharetra. Mauris pharetra urna quis mi convallis pharetra eu sit amet odio. Aenean sagittis nisi eu lacinia placerat. Nulla imperdiet lacus et porta mattis. Praesent magna magna, tempus et pulvinar vitae, elementum a mi. Vivamus vel consequat nisl, et fringilla mi. Vivamus a scelerisque sem. Ut vehicula leo vel risus auctor, ac dignissim nunc tristique. ")));
+    }
+  }]);
+
+  return GetStarted;
+}(_react.Component);
+
+var _default = GetStarted;
+exports.default = _default;
+},{"react":"../../node_modules/react/index.js","react-bootstrap":"../../node_modules/react-bootstrap/esm/index.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js"}],"index.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -49482,6 +49582,8 @@ var _TransactionPool = _interopRequireDefault(require("./components/TransactionP
 
 var _MyAccount = _interopRequireDefault(require("./components/MyAccount"));
 
+var _GetStarted = _interopRequireDefault(require("./components/GetStarted"));
+
 require("./index.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -49496,6 +49598,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   path: "/blocks",
   component: _Blocks.default
 }), _react.default.createElement(_reactRouterDom.Route, {
+  path: "/get-started",
+  component: _GetStarted.default
+}), _react.default.createElement(_reactRouterDom.Route, {
   path: "/myaccount",
   component: _MyAccount.default
 }), _react.default.createElement(_reactRouterDom.Route, {
@@ -49505,7 +49610,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   path: "/transaction-pool",
   component: _TransactionPool.default
 }))), document.getElementById('root'));
-},{"react":"../../node_modules/react/index.js","react-dom":"../../node_modules/react-dom/index.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","./history":"history.js","./components/App":"components/App.js","./components/Blocks":"components/Blocks.js","./components/ConductTransaction":"components/ConductTransaction.js","./components/TransactionPool":"components/TransactionPool.js","./components/MyAccount":"components/MyAccount.js","./index.css":"index.css"}],"../../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","react-dom":"../../node_modules/react-dom/index.js","react-router-dom":"../../node_modules/react-router-dom/esm/react-router-dom.js","./history":"history.js","./components/App":"components/App.js","./components/Blocks":"components/Blocks.js","./components/ConductTransaction":"components/ConductTransaction.js","./components/TransactionPool":"components/TransactionPool.js","./components/MyAccount":"components/MyAccount.js","./components/GetStarted":"components/GetStarted.js","./index.css":"index.css"}],"../../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -49533,7 +49638,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37995" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33459" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
